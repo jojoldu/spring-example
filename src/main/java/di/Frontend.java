@@ -1,10 +1,12 @@
 package di;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 /**
  * Created by jojoldu@gmail.com on 2016-02-07.
  */
+@Component
 public class Frontend {
     @Autowired
     ArgumentResolver argumentResolver;

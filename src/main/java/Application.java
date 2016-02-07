@@ -1,20 +1,15 @@
-import di.Argument;
-import di.ArgumentResolver;
-import di.Calculator;
 import di.Frontend;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.Import;
-
-import java.util.Scanner;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Created by jojoldu@gmail.com on 2016-02-06.
  */
 
 @EnableAutoConfiguration
-@Import(AppConfig.class)
+@ComponentScan("di")
 public class Application {
 
     public static void main(String[] args) {
