@@ -1,4 +1,9 @@
+import di.Argument;
+import di.ArgumentResolver;
+import di.Calculator;
 import di.Frontend;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -10,12 +15,23 @@ import org.springframework.context.annotation.ComponentScan;
 
 @EnableAutoConfiguration
 @ComponentScan("di")
-public class Application {
+public class Application implements CommandLineRunner{
+
+    @Autowired
+    ArgumentResolver argumentResolver;
+
+    @Autowired
+    Calculator calculator;
+
+    @Override
+    public void run(String... args) throws Exception {
+        System.out.println("Enter 2 number");
+        Argument argument = argumentResolver.resolve(System.in);
+        int result = calculator.calc(argument.getA(), argument.getB());
+        System.out.println(result);
+    }
 
     public static void main(String[] args) {
-        try(ConfigurableApplicationContext context = SpringApplication.run(Application.class, args)){
-            Frontend frontend = context.getBean(Frontend.class);
-            frontend.run();
-        }
+        SpringApplication.run(Application.class, args);
     }
 }
