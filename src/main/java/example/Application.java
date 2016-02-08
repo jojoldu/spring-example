@@ -27,11 +27,11 @@ public class Application implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        String sql = "SELECT * FROM customers WHEE id = :id";
+        String sql = "SELECT id,first_name,last_name FROM customers WHERE id = :id";
         SqlParameterSource param = new MapSqlParameterSource()
                 .addValue("id", 1);
 
-        Integer result = jdbcTemplate.queryForObject(sql, param,
+        Customer result = jdbcTemplate.queryForObject(sql, param,
                 (rs, rowNum) ->
                     new Customer(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"))
         );
