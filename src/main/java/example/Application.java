@@ -31,16 +31,19 @@ public class Application implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
+/*
+        //command line Runner 사용할때 주석 제거
         Customer created = customerRepository.save(new Customer(null, "동욱","이"));
         System.out.println(created + " is created!");
 
         Pageable pageable = new PageRequest(0, 3);
         Page<Customer> page = customerRepository.findAll(pageable);
+
         System.out.println("1페이지당 데이터수 : " + page.getSize());
         System.out.println("현재페이지 : " + page.getNumber());
         System.out.println("전체 페이지수 : " + page.getTotalPages());
         System.out.println("전체 데이터수 : " + page.getTotalElements());
-        customerRepository.findAll().forEach(System.out::println);
+        customerRepository.findAll().forEach(System.out::println);*/
     }
 
     public static void main(String[] args) {
