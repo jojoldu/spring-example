@@ -1,7 +1,12 @@
 package example.repository;
 
 import example.domain.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,25 +16,6 @@ import java.util.concurrent.ConcurrentMap;
 /**
  * Created by jojoldu@gmail.com on 2016-02-07.
  */
-@Repository
-public class CustomerRepository {
-
-    private final ConcurrentMap<Integer, Customer> customerMap = new ConcurrentHashMap<>();
-
-    public List<Customer> findAll(){
-        return new ArrayList<>(customerMap.values());
-    }
-
-    public Customer findOne(Integer id){
-        return customerMap.get(id);
-    }
-
-    public Customer save(Customer customer){
-        return customerMap.put(customer.getId(), customer);
-    }
-
-    public void delete(Integer id){
-        customerMap.remove(id);
-    }
+public interface CustomerRepository extends JpaRepository<Customer, Integer>{
 
 }

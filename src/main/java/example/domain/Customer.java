@@ -1,14 +1,28 @@
 package example.domain;
 
+
+import javax.persistence.*;
+
 /**
  * Created by jojoldu@gmail.com on 2016-02-07.
  */
 
+@Entity
+@Table(name="customers")
 public class Customer {
 
+    @Id
+    @GeneratedValue
     private Integer id;
+
+    @Column(nullable = false)
     private String firstName;
+
+    @Column(nullable = false)
     private String lastName;
+
+    public Customer() {
+    }
 
     public Customer(Integer id, String firstName, String lastName) {
         this.id = id;
