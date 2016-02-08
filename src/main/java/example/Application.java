@@ -27,19 +27,14 @@ public class Application implements CommandLineRunner{
 
     @Override
     public void run(String... args) throws Exception {
-        customerService.save(new Customer(1, "동욱", "이"));
-        customerService.save(new Customer(2, "천용", "배"));
-        customerService.save(new Customer(3, "우중", "정"));
-
-        customerService.findAll().forEach(System.out::println);
-        System.out.println("Map에 담았다!");
-
-        String sql = "SELECT :a+:b";
+        String sql = "SELECT * FROM customers WHEE id = :id";
         SqlParameterSource param = new MapSqlParameterSource()
-                .addValue("a", 100)
-                .addValue("b", 200);
+                .addValue("id", 1);
 
-        Integer result = jdbcTemplate.queryForObject(sql, param, Integer.class);
+        Integer result = jdbcTemplate.queryForObject(sql, param,
+                (rs, rowNum) ->
+                    new Customer(rs.getInt("id"), rs.getString("first_name"), rs.getString("last_name"))
+        );
         System.out.println("result : " + result);
 
     }
