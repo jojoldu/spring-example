@@ -20,6 +20,10 @@ public class CustomerService {
     @Autowired
     CustomerRepository customerRepository;
 
+    public List<Customer> findAll(){
+        return customerRepository.findAll();
+    }
+
     public Page<Customer> findAll(Pageable pageable){
         return customerRepository.findAll(pageable);
     }

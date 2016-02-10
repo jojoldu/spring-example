@@ -44,6 +44,11 @@ public class Application implements CommandLineRunner{
         System.out.println("전체 페이지수 : " + page.getTotalPages());
         System.out.println("전체 데이터수 : " + page.getTotalElements());
         customerRepository.findAll().forEach(System.out::println);*/
+
+        customerRepository.save(new Customer("동욱","이"));
+        customerRepository.save(new Customer("천용", "배"));
+        customerRepository.save(new Customer("우중", "정"));
+        System.out.println("created!");
     }
 
     public static void main(String[] args) {
